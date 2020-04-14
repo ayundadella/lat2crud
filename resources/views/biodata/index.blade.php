@@ -15,7 +15,8 @@
 
 			<br>
 			<a href="/biodata-mahasiswa/create" class="btn btn-info"> + Tambah Data Mahasiswa</a>
-			<br><br>
+			<br>
+			<a href="/biodata-mahasiswa/export_excel" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
 
 			@forelse($mahasiswa as $data) 
 			<tr>

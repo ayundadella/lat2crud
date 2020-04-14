@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\BiodataMahasiswa;
 use DataTables;
 use DB;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UpdateBiodata;
+use App\Exports\MahasiswaExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 
 class BiodataController extends Controller
 {
@@ -21,6 +23,11 @@ class BiodataController extends Controller
         $mahasiswa = BiodataMahasiswa::all(); //menyeleksi data dr DB
         return view("biodata.index", compact("mahasiswa")); //proses passing data dr controller ke view
 
+    }
+
+    public function export_excel()
+    {
+        return Excel::download(new MahasiswaExport, 'mahasiswa.xlsx');
     }
 
     /**
