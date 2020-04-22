@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\BiodataMahasiswa;
 use DataTables;
-use DB;
+use Yajra\DataTables\Html\Builder;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UpdateBiodata;
 use App\Exports\MahasiswaExport;
@@ -18,11 +18,42 @@ class BiodataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Builder $builder)
     {
-        $mahasiswa = BiodataMahasiswa::all(); //menyeleksi data dr DB
-        return view("biodata.index", compact("mahasiswa")); //proses passing data dr controller ke view
+        // $mahasiswa = BiodataMahasiswa::all(); //menyeleksi data dr DB
+        // return view("biodata.index", compact("mahasiswa")); //proses passing data dr controller ke view
 
+        if(request()->ajax()) {
+            return DataTables::of(BiodataMahasiswa::query())->editColumn("nim", function($data) {
+               return "<strong><i>" . $data->nim .
+               "</i></strong>" ;
+            })->addColumn("action", function($data) {
+                return "
+                <a href='" . route("biodata.show", ["id" => $data->id]) ."' class='btn btn-success'>Detail</a>
+                <a href='" . route("biodata.edit", ["id" => $data->id]) ."' class='btn btn-warning'>Edit</a>
+                <a href='" . route("biodata.destroy", ["id" => $data->id]) ."' class='btn btn-danger'>Delete</button>
+                ";
+            })->rawColumns(["nim", "action"])->addIndexColumn()->toJson();
+        }
+
+        $html = $builder->columns([
+            ["data" => "DT_RowIndex", "name" => "#", "title" => "#", "defaultContent"=> "", "orderable" => false],
+            ["data" => "name", "name" => "name", "title" => "NAMA"],
+            ["data" => "nim", "nim" => "nim", "title" => "NIM"],
+            [
+                'defaultContent' => '',
+                'data'           => 'action',
+                'name'           => 'action',
+                'title'          => 'ACTION',
+                'render'         => null,
+                'orderable'      => false,
+                'searchable'     => false,
+                'exportable'     => false,
+                'printable'      => true,
+            ],
+        ]);
+
+        return view("biodata.index", compact("html"));
     }
 
     public function export_excel()
@@ -76,7 +107,7 @@ class BiodataController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource.2
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
