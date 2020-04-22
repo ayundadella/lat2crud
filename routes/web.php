@@ -36,5 +36,6 @@ Route::post("/biodata-mahasiswa/{id}/update", "BiodataController@update")
 	->name("biodata.update");
 Route::get("/biodata-mahasiswa/{id}/delete", "BiodataController@destroy")
 	->name("biodata.destroy");
+Route::get("/mail/send", "MailController@send");
 
 // Route::resource("biodata", "BiodataController")->middleware("web");
