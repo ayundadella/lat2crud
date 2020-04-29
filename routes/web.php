@@ -12,9 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
-
+  
 Route::get("/login", "LoginController@showLoginForm")->name("login.index");
 Route::post("/login", "LoginController@login")->name("login.login");
 Route::get("/logout", "LoginController@logout")->name("logout");
