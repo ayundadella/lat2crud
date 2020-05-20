@@ -21,10 +21,12 @@
             <div class="box-body">
                
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover myTable">
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Action</th>
+                                <th>Foto</th>
                                 <th>Nama</th>
                                 <th>NISN</th>
                                 <th>Email</th>
@@ -33,12 +35,24 @@
                                 <th>No HP</th>
                                 <th>Melengkapi Data</th>
                                 <th>Verifikasi</th>
+                                <th>Download</th>
+                                <th>Lulus</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($data as $e=>$dt)
                             <tr>
                                 <td>{{ $e+1 }}</td>
+                                <td>
+                                    <div style="width:60px">
+                                        <a href="{{ url('peserta/'.$dt->id) }}" class="btn btn-warning btn-xs btn-edit" id="edit">
+                                            <i class="fa fa-pencil-square-o"></i></a> 
+                                            <button href="{{ url('peserta/'.$dt->id) }}" class="btn btn-danger btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
+                                        </div>
+                                </td>
+                                <td>
+                                    <img src="{{ asset($dt->photo) }}" style="width: 100px;">
+                                </td>
                                 <td>{{ $dt->name }}</td>
                                 <td>{{ $dt->nisn }}</td>
                                 <td>{{ $dt->email }}</td>
@@ -65,6 +79,19 @@
                                     <label class="label label-danger">Belum Diverifikasi</label>
                                 </td>
                                 @endif
+
+                                <td>
+                                    <p>
+                                        <a href="{{ asset($dt->biodata_r->ijazah) }}" class="btn btn-xs btn-success" download="">Download Ijazah</a>
+                                    </p>
+                                </td>
+                                <td>
+                                    @if($dt->is_lulus == null)
+                                    <a href="{{ url('peserta/'.$dt->id.'/lulus') }}" class="btn btn-xs btn-primary">Luluskan</a>
+                                    @else
+                                    <label class="label label-info">Sudah Lulus</label>
+                                    @endif
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

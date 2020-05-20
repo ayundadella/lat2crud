@@ -13,7 +13,7 @@
             </div>
             <div class="box-body">
 
-               <form role="form" method="POST" action="{{ url('biodata/'.\Auth::user()->id) }}">
+               <form role="form" method="POST" action="{{ url('biodata/'.\Auth::user()->id) }}" enctype="multipart/form-data">
                 @csrf
               <div class="box-body">
 
@@ -39,7 +39,14 @@
                   <textarea name="alamat" rows="5" class="form-control">
                   </textarea>
                 </div>
+
+                <div class="form-group">
+                  <label for="exampleInputFile">Ijazah</label>
+                  <input type="file" id="exampleInputFile" name="ijazah" class="form-control">
+                </div>
               </div>
+
+              
               <!-- /.box-body -->
  
               <div class="box-footer">
@@ -48,7 +55,7 @@
             </form>
 
             @else
-            <form role="form" method="POST" action="{{ url('biodata/'.\Auth::user()->id) }}">
+            <form role="form" method="POST" action="{{ url('biodata/'.\Auth::user()->id) }}" enctype="multipart/form-data">
                 @csrf
                 {{ method_field('PUT') }}
               <div class="box-body">
@@ -71,6 +78,12 @@
                   <label for="exampleInputPassword1">Alamat</label>
                   <textarea name="alamat" rows="5" class="form-control">{{ $dt->alamat }}
                   </textarea>
+                </div>
+
+                
+                <div class="form-group">
+                  <label for="exampleInputFile">Ijazah</label>
+                  <input type="file" id="exampleInputFile" name="ijazah" class="form-control">
                 </div>
               </div>
               <!-- /.box-body -->

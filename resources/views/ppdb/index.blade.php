@@ -24,7 +24,10 @@
 
 			<form role="form" method="POST" action="{{ url('ppdb') }}" enctype="multipart/form-data">
 				@csrf
+
               <div class="box-body">
+                 <h2>Form Pendaftaran</h2>
+                 <br>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Nama Peserta</label>
                   <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nama Peserta" name="nama">
@@ -41,7 +44,7 @@
                   <label for="exampleInputFile">Foto Peserta</label>
                   <input type="file" id="exampleInputFile" name="photo">
  
-                  <p class="help-block">Example block-level help text here.</p>
+                 
                 </div>
                 <div class="checkbox">
                   <label>

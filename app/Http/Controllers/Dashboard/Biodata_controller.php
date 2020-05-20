@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Biodata;
 use App\User;
 use PDF;
+use App\Models\Profile_sekolah;
 
 class Biodata_controller extends Controller
 {
@@ -24,6 +25,15 @@ class Biodata_controller extends Controller
     		'tanggal_lahir'=>'required',
     		'alamat'=>'required'
     	]);
+
+         //mengecek foto
+    $file = $request->file('ijazah');
+    //jika user mengupload foto maka file akan dipindahkan 
+    if($file){
+        $file->move('biodata_files',$file->getClientOriginalName());
+        $data['ijazah'] = 'biodata_files/'.$file->getClientOriginalName();
+    }
+
     	
     	$data['users']= $id;
     	$data['no_hp']= $request->no_hp;
@@ -47,13 +57,16 @@ class Biodata_controller extends Controller
     		'tanggal_lahir'=>'required',
     		'alamat'=>'required'
     	]);
-    	
-    	$data['no_hp']= $request->no_hp;
-    	$data['alamat']= $request->alamat;
-    	$data['tempat_lahir']= $request->tempat_lahir;
-    	$data['tanggal_lahir']= $request->tanggal_lahir;
-    	$data['updated_at'] = date('Y-m-d H:i:s');
 
+         //mengecek foto
+    $file = $request->file('ijazah');
+    //jika user mengupload foto maka file akan dipindahkan 
+    if($file){ 
+        $file->move('biodata_files',$file->getClientOriginalName());
+        $data['ijazah'] = 'biodata_files/'.$file->getClientOriginalName();
+    }
+
+    
     	Biodata::where('users',$id)->update($data);
 
     	\Session::flash('sukses','Data berhasil diupdate');
@@ -64,9 +77,10 @@ class Biodata_controller extends Controller
     public function print(){
         try {
             $dt = User::where('id',\Auth::user()->id)->with('biodata_r')->first();
+            $sk = Profile_sekolah::first();
  
  			//mengarah ke print biodata
-            $pdf = PDF::loadview('dashboard.biodata.pdf',compact('dt'))->setPaper('a4', 'landscape');
+            $pdf = PDF::loadview('dashboard.biodata.pdf',compact('dt','sk'))->setPaper('a4', 'landscape');
             return $pdf->stream();
  
         } catch (\Exception $e) {

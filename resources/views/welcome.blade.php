@@ -3,16 +3,17 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
-      <h2 class="display-3">PPDB</h2>
-      <h2 class="display-3">SMAN 3 PROBOLINGGO</h2>
+      <h3 style="font-weight: bold;" class="display-3">Penerimaan Peserta Didik Baru</h3>
+      <h2 style="font-weight: bold;" class="display-4">SMAN 3 PROBOLINGGO</h2>
       <p>Untuk calon pendaftar tahun ajaran 2020/2021 bisa mendaftar melalui website ini atau langsung datang ke tempat pendaftaran.</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+      <p>Silahkan klik button dibawah ini untuk melakukan pendaftaran PPDB Online</p>
+      <p><a class="btn btn-primary btn-lg" href="{{ url('ppdb') }}" role="button">PPDB &raquo;</a></p>
     </div>
   </div>
 
-  <div class="container">
+  <!-- <div class="container"> -->
     <!-- Example row of columns -->
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-4">
         <h2>Jadwal Pendaftaran</h2>
         <p style="font-weight: bold; text-align: center;">Gelombang 1 </p><br>
@@ -36,4 +37,4 @@
 
     <hr>
 
-  </div> <!-- /container -->
+  </div> -->

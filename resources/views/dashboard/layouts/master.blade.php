@@ -119,9 +119,9 @@
     </div>
     <strong>
       Pendaftaran Peserta Didik Baru <br>
-      SMAN 1 PROBOLINGGO <br>
+      SMAN 3 PROBOLINGGO <br>
       Telp: 0335-42213 <br>
-      E-mail: smasaprob@gmail.com
+      E-mail: smagaprob@gmail.com
     </strong>
   </footer>
 

@@ -33,13 +33,15 @@
    <a href="../../index2.html"><b></a>
  </div>
  <!-- /.login-logo -->
+ <h2 style="text-align: center; font-weight: bold;"> | Admin |</h2>
+ <br><br>
  <div class="login-box-body">
-   <p class="login-box-msg">Please log in first</p>
+   <p class="login-box-msg">Please Login First</p>
  
    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
      {{ csrf_field() }}
      <div class="form-group has-feedback">
-       <input type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="email">
+       <input type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
        @if ($errors->has('email'))
            <span class="help-block">
                <strong>{{ $errors->first('email') }}</strong>

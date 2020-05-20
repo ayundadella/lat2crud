@@ -14,7 +14,7 @@
             <div class="box-body">
 
                <div class="row">
-                   <div class="col-md-12">
+                   <div class="col-md-4">
                        <center>
                         <h2>{{ $pesan }}</h2>
                         </center>
@@ -28,8 +28,20 @@
                         </p>
                         @endif
                    </div>
-               </div>
 
+                   <div class="col-md-4">
+                       <center>
+                        <h2>{{ $status }}</h2>
+                        </center>
+                   </div>
+
+
+                   <div class="col-md-4">
+                       <center>
+                        <h2>{{ $pesan_lulus }}</h2>
+                        </center>
+                   </div>
+               </div>
             </div>
         </div>
     </div>
